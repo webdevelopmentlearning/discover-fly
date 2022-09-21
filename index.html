@@ -49,23 +49,21 @@
                 </div>
             </div>
             <div class="input-group f-class">
+                <button id="first-dicrese" class="plus-minus-btn">-</button>
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="first-count" class="inp-style inp-width" type="text" name="" value="0">
                 </div>
-                <div class="plus-minus-btn">
-                    <p>+ -</p>
-                </div>
+                <button id="first-increse" class="plus-minus-btn">+</button>
             </div>
             
             <div class="input-group f-class">
+                <button id="econo-dicrese" class="plus-minus-btn">-</button>
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="econo-count" class="inp-style inp-width" type="text" name="" value="0">
                 </div>
-                <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
-                </div>
+                <button id="econo-increse" class="plus-minus-btn">+</button>
             </div>
             <div class="calculations">
                 <div class="amount">
@@ -73,7 +71,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p>$ <span id="first-price">00</span></p>
                     </div>
                 </div>
 
@@ -82,7 +80,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p>$ <span id="tax">00</span></p>
                     </div>
                 </div>
                 <hr>
@@ -91,20 +89,99 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p>$ <span id="total">00</span></p>
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button id="book-now" class="btn-style">Book Now</button>
         </div>
 
         <div class="booking-content">
+            <h1 id="thanx"></h1>
             <h1>discover <br> around the world</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
         </div>
+        
+ 
     </section>
 
-    <!--Thank You-->
+    <script>
+        //Its First Class Ticket Price Programme
+        document.getElementById('first-increse').addEventListener('click',function(){
+        const firstInput = document.getElementById('first-count');
+        const inputNumber = parseInt(firstInput.value)
+        const newInputNumber = inputNumber + 1;
+        firstInput.value = newInputNumber;
+        const firstPrice = document.getElementById('first-price');
+        const firstTotal = newInputNumber * 150;
+        const secountPrice = document.getElementById('econo-count').value;
+        const secountTotalPrice = secountPrice *100;
+        const total = firstTotal+secountTotalPrice;
+        const totalTax = total*0.01;
+        document.getElementById('tax').innerText = totalTax
+        const subTotal = document.getElementById('first-price').innerText=firstTotal +secountTotalPrice;
+        document.getElementById('total').innerText= subTotal +totalTax;
+        })
+
+        document.getElementById('first-dicrese').addEventListener('click',function(){
+        const firstInput = document.getElementById('first-count');
+        const inputNumber = parseInt(firstInput.value)
+        const newInputNumber = inputNumber - 1;
+        firstInput.value = newInputNumber;
+        const firstPrice = document.getElementById('first-price');
+        const firstTotal = newInputNumber * 150;
+        const secountPrice = document.getElementById('econo-count').value;
+        const secountTotalPrice = secountPrice *100;
+        const total = firstTotal+secountTotalPrice;
+        const totalTax = total*0.01;
+        document.getElementById('tax').innerText = totalTax
+        const subTotal = document.getElementById('first-price').innerText=firstTotal+secountTotalPrice;
+        document.getElementById('total').innerText= subTotal +totalTax;
+
+        })
+        
+        
+//Its Economy Class Ticket Price Programme!
+document.getElementById('econo-increse').addEventListener('click',function(){
+        const econoInput = document.getElementById('econo-count');
+        const inputNumber = parseInt(econoInput.value)
+        const newInputNumber = inputNumber + 1;
+        econoInput.value = newInputNumber;
+        const econoPrice = document.getElementById('first-price');
+        const econoTotal = newInputNumber * 100;
+        const firstPrice = document.getElementById('first-count').value;
+        const newFirstPrice = firstPrice * 150;
+        const total = econoTotal+newFirstPrice;
+        const totalTax = total*0.01;
+        document.getElementById('tax').innerText = totalTax
+        const subTotal = document.getElementById('first-price').innerText=econoTotal + newFirstPrice;
+        document.getElementById('total').innerText= subTotal +totalTax;
+
+        })
+
+        document.getElementById('econo-dicrese').addEventListener('click',function(){
+        const econoInput = document.getElementById('econo-count');
+        const inputNumber = parseInt(econoInput.value)
+        const newInputNumber = inputNumber - 1;
+        econoInput.value = newInputNumber;
+        const econoPrice = document.getElementById('first-price');
+        const econoTotal = newInputNumber * 100;
+        const firstPrice = document.getElementById('first-count').value;
+        const newFirstPrice = firstPrice * 150;
+        const total = econoTotal+newFirstPrice;
+        const totalTax = total*0.01;
+        document.getElementById('tax').innerText = totalTax
+        const subTotal =document.getElementById('first-price').innerText=econoTotal+newFirstPrice
+        document.getElementById('total').innerText= subTotal +totalTax;
+
+
+        })
+        document.getElementById('book-now').addEventListener('click',function(){
+        document.getElementById('thanx').style.display='block';
+         document.getElementById('thanx').innerText = "Thank You So Much For Your Order!";
+        })
+
+    </script>
 </body>
 
 </html>
